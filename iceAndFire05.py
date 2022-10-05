@@ -19,11 +19,19 @@ def main():
         got_dj = gotresp.json()
         pprint.pprint(got_dj)
 
-        house_api = got_dj['allegiances']
-        for house in house_api:
-            houseresp = requests.get(house_api)
+        houses_list = got_dj['allegiances']
+        print("Houses: ")
+        for house in houses_list:
+            houseresp = requests.get(house)
             house_dj = houseresp.json()
-            print(f"House: {house_dj['name']}")
+            print(f"{house_dj['name']}")
+
+        books_list = got_dj['books']
+        print("Books: ")
+        for book in books_list:
+            bookresp = requests.get(book)
+            book_dj = bookresp.json()
+            print(f"{book_dj['name']}")
 
 if __name__ == "__main__":
         main()
